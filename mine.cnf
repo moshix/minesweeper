@@ -1,0 +1,8 @@
+# Minesweeper 3270 Configuration File
+# Lines starting with # are comments
+
+# TCP port for the minesweeper server
+port=3270
+
+# Instance name displayed to users
+instance_name=Moshix Mine Sweeper
