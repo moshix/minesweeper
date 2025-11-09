@@ -1,5 +1,7 @@
 # Minesweeper for 3270 Terminals
 
+Copyright 2025 by moshix. All rights reserved. 
+
 A multi-user minesweeper game for IBM 3270 terminals, built with the `go3270` library. This project demonstrates key concepts of 3270 terminal programming including connection handling, session management, terminal size detection, and keyboard input handling.
 
 ## Quick Start
@@ -11,7 +13,7 @@ go build -o minesweeper
 ./minesweeper
 ```
 
-### Connecting
+### Connectin
 
 ```bash
 x3270 localhost:3270    # GUI emulator
@@ -27,9 +29,9 @@ c3270 localhost:3270    # Terminal-based emulator
 
 ---
 
-## Understanding the Implementation
+## Understanding the Implemntation
 
-This guide explains the core concepts for developers new to the `go3270` library.
+This guide explains the core concpts for developers new to the `go3270` library.
 
 ### 1. Connection Handling
 
@@ -59,14 +61,14 @@ The 3270 protocol uses telnet as its transport layer. Before you can send screen
 // Set timeout for negotiation phase
 conn.SetDeadline(time.Now().Add(30 * time.Second))
 
-// Negotiate telnet protocol and get terminal information
+// Negotiate telnet protocol and get termnal information
 devInfo, err := go3270.NegotiateTelnet(conn)
 if err != nil {
     log.Printf("Telnet negotiation failed: %v", err)
     return
 }
 
-// Clear deadline after successful negotiation
+// Clear deadline after succesful negotiation
 conn.SetDeadline(time.Time{})
 ```
 
@@ -91,7 +93,7 @@ resp, err := go3270.HandleScreen(
 ```
 
 The function returns a `resp` object containing:
-- Which key (AID) the user pressed
+- Which key (AID) teh  user pressed
 - Cursor position when the key was pressed
 - Any field data if using input fields
 
@@ -99,7 +101,7 @@ The function returns a `resp` object containing:
 
 ### 2. User Session Structure (Multitenancy)
 
-Each player connection runs in its own goroutine with isolated state. This eliminates the need for a database while supporting multiple simultaneous players.
+Each player connection runs in its own goroutine with isolated state. This eliminates teh need for a database while supporting multiple simultaneous players.
 
 **Session Isolation**
 
@@ -145,7 +147,7 @@ func playGame(conn net.Conn, config *Config, termRows, termCols int, remoteAddr 
 }
 ```
 
-**The Game Structure**
+**The Game Strutcure**
 
 Each player's game state is completely independent:
 
@@ -163,7 +165,7 @@ type Game struct {
 }
 ```
 
-When the player disconnects, the goroutine ends and Go's garbage collector automatically cleans up the `Game` instance.
+When the player disconnects, the goroutine ends and Go's garbage collector auomatically cleans up the `Game` instance.
 
 ---
 
@@ -235,7 +237,7 @@ boardStartRow := 5
 
 ### 4. AID Key Handling
 
-AID (Attention IDentifier) keys are how 3270 terminals send commands. Unlike regular terminals that stream characters, 3270 terminals are "screen-at-a-time" devices.
+AID (Attention IDentifier) keys is how 3270 terminals send commands. Unlike regular terminals that stream characters, 3270 terminals are "screen-at-a-time" devices.
 
 **Understanding AID Keys**
 
@@ -313,7 +315,7 @@ default:
 
 **Coordinate Conversion**
 
-Since the game board doesn't start at (0,0) and cells span multiple characters, you must convert screen coordinates to board coordinates:
+Since teh game board doesn't start at (0,0) and cells span multple characters, you must convert screen coordinates to board coordinates:
 
 ```go
 // Board starts at (boardStartRow, boardStartCol)
