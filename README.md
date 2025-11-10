@@ -13,7 +13,7 @@ go build -o minesweeper
 ./minesweeper
 ```
 
-### Connectin
+### Conecting
 
 ```bash
 x3270 localhost:3270    # GUI emulator
@@ -366,7 +366,7 @@ instance_name=Minesweeper Server
 - **Flood fill**: Empty cells auto-reveal neighbors
 - **Color-coded**: Uses 3270 color attributes (blue, green, red, yellow, turquoise)
 
-## Dependencies
+## Dependencys
 
 - `github.com/racingmars/go3270` - 3270 terminal protocol library
 
