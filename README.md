@@ -27,6 +27,39 @@ c3270 localhost:3270    # Terminal-based emulator
 - **F3**: New game
 - **F12**: Quit
 
+## Project Structure
+
+```
+.
+├── config.go          # Configuration file parser
+├── game.go            # Game logic (mines, reveals, win/loss)
+├── screen.go          # Screen building (rendering game state)
+├── minesweeper.go     # Main server (connections, event loop)
+├── mine.cnf           # Configuration file
+├── go.mod             # Go module definition
+└── README.md          # This file
+```
+
+## Configuration
+
+Edit `mine.cnf`:
+
+```ini
+# Minesweeper configuration
+port=3270
+instance_name=Minesweeper Server
+```
+
+- `port`: TCP port (default: 3270)
+- `instance_name`: Server name shown to players
+
+## Features
+
+- **Multi-user**: Each connection is isolated, no shared state
+- **Adaptive board**: Automatically sizes to terminal dimensions
+- **First-click protection**: First revealed cell is never a mine
+- **Flood fill**: Empty cells auto-reveal neighbors
+- **Color-coded**: Uses 3270 color attributes (blue, green, red, yellow, turquoise)
 ---
 
 ## Understanding the Implementation
@@ -315,7 +348,9 @@ default:
 
 **Coordinate Conversion**
 
-Since teh game board doesn't start at (0,0) and cells span multple characters, you must convert screen coordinates to board coordinates:
+You can read the cursor position at the time the user pressed an AID key. This is helpful so the user can point at a row or column (or row and column) and you can then take action depending what the user is pointing the cursor at. In our game the user will put the cursor at the cell they want to uncover. 
+
+Since the game board doesn't start at (0,0) and cells span multple characters, you must convert screen coordinates to board coordinates:
 
 ```go
 // Board starts at (boardStartRow, boardStartCol)
@@ -332,39 +367,7 @@ boardCol := (cursorCol - boardStartCol - 1) / 4
 
 ---
 
-## Project Structure
 
-```
-.
-├── config.go          # Configuration file parser
-├── game.go            # Game logic (mines, reveals, win/loss)
-├── screen.go          # Screen building (rendering game state)
-├── minesweeper.go     # Main server (connections, event loop)
-├── mine.cnf           # Configuration file
-├── go.mod             # Go module definition
-└── README.md          # This file
-```
-
-## Configuration
-
-Edit `mine.cnf`:
-
-```ini
-# Minesweeper configuration
-port=3270
-instance_name=Minesweeper Server
-```
-
-- `port`: TCP port (default: 3270)
-- `instance_name`: Server name shown to players
-
-## Features
-
-- **Multi-user**: Each connection is isolated, no shared state
-- **Adaptive board**: Automatically sizes to terminal dimensions
-- **First-click protection**: First revealed cell is never a mine
-- **Flood fill**: Empty cells auto-reveal neighbors
-- **Color-coded**: Uses 3270 color attributes (blue, green, red, yellow, turquoise)
 
 ## Dependencys
 
