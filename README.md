@@ -29,7 +29,7 @@ c3270 localhost:3270    # Terminal-based emulator
 
 ---
 
-## Understanding the Implemntation
+## Understanding the Implementation
 
 This guide explains the core concpts for developers new to the `go3270` library.
 
@@ -83,8 +83,8 @@ resp, err := go3270.HandleScreen(
     screen,                              // The screen to display
     nil,                                 // Optional input fields (not used here)
     nil,                                 // Optional field map
-    []go3270.AID{go3270.AIDEnter},      // "Accept" keys (continue processing)
-    []go3270.AID{go3270.AIDPF12},       // "Reject" keys (exit/cancel)
+    []go3270.AID{go3270.AIDEnter},       // "Accept" keys (continue processing)
+    []go3270.AID{go3270.AIDPF12},        // "Reject" keys (exit/cancel)
     "",                                  // Input field name
     termRows/2,                          // Initial cursor row
     termCols/2,                          // Initial cursor column
