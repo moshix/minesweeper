@@ -229,7 +229,7 @@ boardStartRow := 5
 | Terminal Size | Board Size | Total Cells | Mines |
 |--------------|------------|-------------|-------|
 | 24x80 (Model 2) | 8x10 | 80 | 13 |
-| 32x80 | 11x10 | 110 | 18 |
+| 32x80 (Model 3) | 11x10 | 110 | 18 |
 | 43x80 (Model 4) | 18x10 | 180 | 30 |
 | 62x160 (Model 5) | 27x39 | 1,053 | 175 |
 
